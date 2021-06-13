@@ -1,0 +1,29 @@
+package tad;
+
+import java.util.Scanner;
+
+
+public class metodosSenha {
+    static Scanner in = new Scanner(System.in); 
+    static Queue fila = new Queue(10);
+    static int qtd;
+    boolean caixa = false; // inicializado para o caso de não ter ninguem atendendo
+    
+    public static void retirarSenha() { // metodo (a)
+      if (fila.isFull()) { 
+          System.out.println("Limite de 10 pessoas dentro do banco atingido! Por gentileza volte outra hora.");
+      } else {
+          qtd++;
+          fila.enqueue(qtd);
+          System.out.println("Sua senha é" + qtd);
+      }
+    } 
+   public static void chamarSenha() { // metodo (b)
+       if (fila.isEmpty()) { //se a fila estiver vázia
+            System.err.println("Fila vazia, não há nenhum cliente para atender!");
+        } else { //chamando uma senha para atendimento
+            System.out.println("Senha:" + fila.dequeue());
+            
+        }
+   }    
+}
