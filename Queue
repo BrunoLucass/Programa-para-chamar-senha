@@ -1,0 +1,60 @@
+package tad;
+
+
+public class Queue <T> {
+   
+     private QueueNode<T> inicio;
+     private QueueNode<T> fim;
+     private int cheio;
+     private int qtd;
+
+    public Queue(int cheio) {
+        this.cheio = cheio;
+    }
+
+    public boolean isEmpty() {
+        if (qtd == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isFull() {
+        if (qtd == cheio) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public T head() {
+        return inicio.getInfo();
+    }
+
+    public void enqueue(T valor) { //inserir no final da fila
+        QueueNode novo = new QueueNode(valor);
+        if (isEmpty()) {
+            inicio = novo;
+            fim = novo;
+            qtd++;
+        } else {
+            fim.setProx(novo);
+            fim = novo;
+            qtd++;
+        }
+    }
+
+    public T dequeue() { //remover o primeiro
+        QueueNode<T> aux = inicio;
+        if (inicio == fim) {
+            inicio = null;
+            fim = null;
+            qtd = 0;
+        } else {
+            inicio = inicio.getProx();
+            qtd--;
+        }
+        return aux.getInfo();
+    }
+}
